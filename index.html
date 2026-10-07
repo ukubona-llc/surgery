@@ -163,6 +163,33 @@ V.   Graveyard, Survivors, Culture {Stank-Face, Embodiment}, Memory, Institution
 </table></div>
 <div class="q">When the first frame is already a blood pool, what supplies the shadow: memory, an anatomical prior, or preop imaging?</div>
 <p class="mut">Misfits worth logging: physical-sensor problems (hardware fixes) are the first place this framework may reach its edge.</p>
+<h2><small>Market position</small>Fully hosted agents vs Ukubona</h2>
+<p>A fully hosted agent is one where a single vendor owns the whole loop, I through V, including the V &rarr; I&prime; edge. You supply an intention, and the host supplies the engine, the perception, the routing, the collisions and the memory.</p>
+<div class="tw"><table>
+<tr><th>Stage</th><th>In your vocab</th><th>In a fully hosted agent</th></tr>
+<tr><td><b>I. Engine / Tensor</b></td><td>The substrate, indifferent to the user's intention</td><td>Model weights, compute, the per-agent cloud machine. You are the diminutive participant inside someone else's engine.</td></tr>
+<tr><td><b>II. Sample / Matrix</b></td><td>Finite sampling, next-token as attention</td><td>The context window, browser and tool I/O. What the agent sees is a projection the host chose.</td></tr>
+<tr><td><b>III. Adaptation / Vector</b></td><td>Routing: classify the error, update on it</td><td>The agent loop: tool selection, retries, error handling. The insertions, deletions and permutations of a plan happen here.</td></tr>
+<tr><td><b>IV. Regulation / Eigenmode</b></td><td>Collisions, consonance vs dissonance</td><td>Sub-agents, sandbox limits, permissions, guardrails. Collisions with compiler, API and policy happen here.</td></tr>
+<tr><td><b>V. Technology / Scalar</b></td><td>Survivors, graveyard, memory &rarr; I&prime;</td><td>The output, plus whatever the host chooses to store as "memory".</td></tr>
+</table></div>
+
+<div class="q">The test is the V &rarr; I&prime; edge.</div>
+<p>In a hosted agent, the survivor comes back to you (the answer, the artifact). The graveyard (the 10,000 trajectories, the failed tool calls, the discarded branches) stays on the vendor's side. If only the survivor is kept, most of the evolutionary information is thrown away. The soil that the next iteration grows from is owned by the host, and so is the clock.</p>
+<pre>State_t = &Sigma; Event_i</pre>
+<p>This only holds if you can replay the events. In a hosted agent, state is the vendor's projection of events you never saw, which is the epistemic amnesia your ledger exists to prevent. This is why a hosted agent fits as a pipeline input (a III/IV engine) and Ukubona fits as the independent V &rarr; I&prime; auditor.</p>
+
+<h3 style="font-size:1.05rem;margin:1.6em 0 .2em">Three predictions that could fail</h3>
+<div class="tw"><table>
+<tr><th>#</th><th>A priori prediction</th><th>Would count against it</th><th>Observed</th></tr>
+<tr><td>1</td><td>A hosted agent's export gives you survivors (final outputs, chat logs) but not the rejected trajectories</td><td>A full trace export exists</td><td></td></tr>
+<tr><td>2</td><td>The same event stream replayed across two vendor model versions produces different state</td><td>It doesn't; the amnesia worry is overstated</td><td></td></tr>
+<tr><td>3</td><td>"Memory" in a hosted agent is lossy, so you cannot reconstruct it from your own event log</td><td>You can; the host is not holding the soil</td><td></td></tr>
+</table></div>
+
+<p>Hosted vs self-hosted is also not binary. It depends on which edges you keep. Hosting III and IV while owning your own event log at V &rarr; I&prime; is the middle position.</p>
+<p>For a clinical agent, the graveyard problem is the selective-labels problem from the surgery pentad above. If the host's selection sets what is logged, the next training set inherits its blind spots.</p>
+<div class="q">Why Ukubona and not a hosted agent? A hosted agent can be an engine in the pipeline. Ukubona owns the event log and audits the V &rarr; I&prime; edge, so the graveyard is kept rather than discarded.</div>
 </main>
 <script>
 (function(){var r=document.documentElement,K='ukb-theme';
