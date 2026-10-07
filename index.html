@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,6 75.9,85.6 8.2,36.4 91.8,36.4 24.1,85.6' fill='none' stroke='%239b2226' stroke-width='7' stroke-linejoin='round'/%3E%3C/svg%3E">
 <title>Surgery — a pentad (Ukubona)</title>
 <style>
 :root{--bg:#faf8f4;--ink:#1d1b19;--mut:#6b655d;--line:#d9d2c7;--card:#fff;--acc:#9b2226;--blue:#2b5f8a;--blood:#b3262c;--tint:#f3eee6;
@@ -31,11 +32,36 @@ figcaption{font-size:.82rem;color:var(--mut);padding:6px 4px 0}
 .strip b{display:block;font:600 .7rem ui-monospace,Menlo,monospace;color:var(--acc)}
 svg text{fill:var(--ink);font-family:ui-monospace,Menlo,monospace;font-size:12px}
 svg .m{fill:var(--mut)}
+
+.ctl{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);right:10px;display:flex;gap:8px;z-index:20}
+.ctl button{width:38px;height:38px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;cursor:pointer;display:grid;place-items:center;padding:0}
+.ctl button:hover{border-color:var(--acc)}
+.waf{display:grid;grid-template-columns:repeat(3,5px);gap:3px}.waf i{width:5px;height:5px;border-radius:50%;background:var(--ink)}
+.menu{position:absolute;top:46px;right:0;width:220px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px;display:none;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.menu.open{display:block}
+.menu a{display:block;padding:8px 10px;border-radius:8px;color:var(--ink);text-decoration:none;font:600 .8rem ui-monospace,Menlo,monospace}
+.menu a:hover{background:var(--tint);color:var(--acc)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{width:56px;height:56px;flex:none;animation:spin 120s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.logo{animation:none}}
 </style>
 </head>
 <body>
+<div class="ctl">
+<button id="tg" aria-label="Toggle light/dark theme" title="Light / dark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></button>
+<button id="wf" aria-label="Apps" aria-expanded="false" title="Ukubona apps"><span class="waf"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></button>
+<nav class="menu" id="mn">
+<a href="https://j-digital-twin.onrender.com/">Ukubona</a>
+<a href="https://ukubona-llc.github.io/science/">Science</a>
+<a href="https://ukubona-llc.github.io/tree/">Tree</a>
+<a href="https://ukubona-llc.github.io/who-reviews/">Who reviews</a>
+<a href="https://ukubona-llc.github.io/trial/">SAPATA</a>
+</nav>
+</div>
 <main>
-<p class="mut" style="font:600 .75rem ui-monospace,Menlo,monospace;letter-spacing:.08em">UKUBONA · SURGERY · 7 OCT 2026</p>
+<div class="top"><p class="mut" style="font:600 .75rem ui-monospace,Menlo,monospace;letter-spacing:.08em;margin:0">UKUBONA · SURGERY · 7 OCT 2026</p>
+<svg class="logo" viewBox="0 0 100 100" aria-label="Ukubona pentagram"><polygon points="50,6 75.9,85.6 8.2,36.4 91.8,36.4 24.1,85.6" fill="none" stroke="var(--acc)" stroke-width="4" stroke-linejoin="round"/></svg></div>
 <h1>Surgery, as a pentad</h1>
 <p class="mut">A sharp a priori for AI-assisted surgery: hemorrhage control, depth on curved tissue, and the organs nobody transplants. Hypotheses, not findings — built from slides, to be tested against the data.</p>
 
@@ -138,5 +164,15 @@ V.   Graveyard, Survivors, Culture {Stank-Face, Embodiment}, Memory, Institution
 <div class="q">When the first frame is already a blood pool, what supplies the shadow: memory, an anatomical prior, or preop imaging?</div>
 <p class="mut">Misfits worth logging: physical-sensor problems (hardware fixes) are the first place this framework may reach its edge.</p>
 </main>
+<script>
+(function(){var r=document.documentElement,K='ukb-theme';
+function cur(){var t=r.getAttribute('data-theme');return t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}
+try{var v=localStorage.getItem(K);if(v)r.setAttribute('data-theme',v)}catch(e){}
+document.getElementById('tg').onclick=function(){var n=cur()==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem(K,n)}catch(e){}};
+var m=document.getElementById('mn'),b=document.getElementById('wf');
+b.onclick=function(e){e.stopPropagation();var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o)};
+document.addEventListener('click',function(){m.classList.remove('open');b.setAttribute('aria-expanded','false')});
+})();
+</script>
 </body>
 </html>
